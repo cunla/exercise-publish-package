@@ -1,4 +1,4 @@
-name: Node.js Package
+name: Docker Package
 
 on: push
 
@@ -11,9 +11,9 @@ jobs:
         timeout-minutes: 12
       - working-directory: ./sample-packages/docker
         run: |
-          docker build -t sample:latest .
+          docker build -t sample .
       - working-directory: ./sample-packages/docker
         run: |
           echo ${{secrets.GITHUB_TOKEN}} | docker login ghcr.io -u cunla --password-stdin
-          docker tag sample ghcr.io/cunla/sample:latest
-          docker push ghcr.io/cunla/sample:latest
+          docker tag sample ghcr.io/cunla/exercise-publish-package/sample:latest
+          docker push ghcr.io/cunla/exercise-publish-package/sample:latest
