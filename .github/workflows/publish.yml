@@ -16,5 +16,5 @@ jobs:
       - working-directory: ./sample-packages/docker
         run: |
           echo ${{secrets.GITHUB_TOKEN}} | docker login ghcr.io -u cunla --password-stdin
-          docker tag sample ghcr.io/cunla/exercise-publish-package/sample:latest
-          docker push ghcr.io/cunla/exercise-publish-package/sample:latest
+          docker tag sample ghcr.io/cunla/exercise-publish-package:latest
+          docker push ghcr.io/cunla/exercise-publish-package:latest
