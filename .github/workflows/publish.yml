@@ -11,7 +11,7 @@ jobs:
         timeout-minutes: 12
       - working-directory: ./sample-packages/docker
         run: |
-          docker build .
+          docker build -t cunla/sample .
       - working-directory: ./sample-packages/docker
         run: |
           echo ${{secrets.GITHUB_TOKEN}} | docker login ghcr.io -u cunla --password-stdin
