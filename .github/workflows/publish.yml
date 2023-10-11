@@ -5,6 +5,7 @@ on: push
 jobs:
   publish-gpr:
     runs-on: ubuntu-latest
+    permissions: write-all
     steps:
       - uses: actions/checkout@v2
       - uses: docker-practice/actions-setup-docker@master
