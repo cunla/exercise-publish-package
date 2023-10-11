@@ -20,13 +20,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 12
-          registry-url: https://npm.pkg.github.com/
-      - working-directory: ./sample-packages/npm
-        run: npm ci
-      - working-directory: ./sample-packages/npm
-        run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      - uses: docker-practice/actions-setup-docker@master
+        timeout-minutes: 12
+      - working-directory: ./sample-packages/docker
+        run: |
+          docker build .
+      - working-directory: ./sample-packages/docker
+        run: |
+          echo ${{secrets.GITHUB_TOKEN}} | docker login ghcr.io -u cunla --password-stdin
+          docker tag sample ghcr.io/cunla/sample:latest
+          docker push ghcr.io/cunla/sample:latest
